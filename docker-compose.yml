@@ -1,4 +1,5 @@
 version: '3.9'
+
 services:
   db:
     image: postgres:16
@@ -12,8 +13,7 @@ services:
       - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
-volumes:
-  db_data:
+
   app:
     build: .
     container_name: meeting_app
@@ -23,3 +23,6 @@ volumes:
       - db
     environment:
       DATABASE_URL: postgresql://almaska:almaska128@db:5432/meeting_rooms_db
+
+volumes:
+  db_data:
