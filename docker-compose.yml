@@ -1,0 +1,25 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:16
+    container_name: meeting_db
+    restart: always
+    environment:
+      POSTGRES_USER: almaska
+      POSTGRES_PASSWORD: almaska128
+      POSTGRES_DB: meeting_rooms_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
+  app:
+    build: .
+    container_name: meeting_app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql://almaska:almaska128@db:5432/meeting_rooms_db
