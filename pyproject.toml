@@ -2,7 +2,7 @@
 name = "meeting-room-booking"
 version = "0.1.0"
 description = "Сервис бронирования переговорных комнат"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["Almas <almaska128@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.11"
