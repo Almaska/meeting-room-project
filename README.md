@@ -1,6 +1,6 @@
 #Сервис бронирования переговорных комнат
 
-#Запуск через Docker Compose (рекомендуемый способ)
+#Запуск через Docker Compose
 
 ```bash
 docker-compose up --build

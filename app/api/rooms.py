@@ -14,7 +14,6 @@ from app.models.booking import Booking
 router = APIRouter()
 
 
-# app/api/rooms.py
 
 from typing import List, Tuple, Union
 from datetime import time
@@ -24,16 +23,10 @@ def calculate_free_slots(
     work_start: time = time(9, 0), 
     work_end: time = time(18, 0)
 ) -> List[Tuple[time, time]]:
-    """
-    Возвращает список свободных интервалов [(start, end), ...]
-    Поддерживает:
-    - объекты с атрибутами .start_time и .end_time (SQLAlchemy модели)
-    - словари с ключами 'start_time' и 'end_time'
-    """
+    
     free = [(work_start, work_end)]
     
     for booking in bookings:
-        # Получаем время в любом формате
         if isinstance(booking, dict):
             start = booking['start_time']
             end = booking['end_time']
@@ -43,14 +36,11 @@ def calculate_free_slots(
         
         new_free = []
         for free_start, free_end in free:
-            # Нет пересечения
             if start >= free_end or end <= free_start:
                 new_free.append((free_start, free_end))
             else:
-                # Слева от брони
                 if start > free_start:
                     new_free.append((free_start, start))
-                # Справа от брони
                 if end < free_end:
                     new_free.append((end, free_end))
         free = new_free
